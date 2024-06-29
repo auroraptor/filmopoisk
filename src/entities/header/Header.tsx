@@ -4,7 +4,7 @@ import Modal from '../modal/Modal';
 import LoginForm from '../../widgets/loginForm/LoginForm';
 import classNames from 'classnames';
 import styles from './Header.module.css';
-import { textLogo } from '../../shared/constants';
+import { textLogo } from '../../shared/constants/titles';
 
 function Header() {
   const [buttonText, setButtonText] = useState('Войти');

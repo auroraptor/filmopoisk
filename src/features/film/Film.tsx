@@ -1,20 +1,12 @@
 import { Link } from "react-router-dom";
 import styles from "./Film.module.css";
 import Raiting from "../raiting/Rating";
+import { ShortMovieInfo } from "../../shared/types";
 
-type FilmProps = {
-  id: string;
-  title: string;
-  genre: string;
-  year: string;
-  description: string;
-  imageUrl: string;
-};
-
-function Film({ id, title, genre, year, description, imageUrl }: FilmProps) {
+function Film({ id, title, genre, release_year, description, poster }: ShortMovieInfo) {
   return (
     <article className={styles.filmCard}>
-      <img src={imageUrl} alt={title} className={styles.filmImage} />
+      <img src={poster} alt={title} className={styles.filmImage} />
       <div className={styles.filmDetailsContainer}>
         <div className={styles.filmDetails}>
           <Link key={id} to={`/film/${id}`} className={styles.filmLink}>
@@ -29,7 +21,7 @@ function Film({ id, title, genre, year, description, imageUrl }: FilmProps) {
               </tr>
               <tr>
                 <td className={styles.label}>Год выпуска:</td>
-                <td className={styles.value}>{year}</td>
+                <td className={styles.value}>{release_year}</td>
               </tr>
               <tr>
                 <td className={styles.label}>Описание:</td>

@@ -1,43 +1,28 @@
-import Film from "../../features/film/Film";
-import styles from "./Films.module.css";
+// src/components/films/Films.tsx
 
-const films = [
-  {
-    id: "1",
-    title: "Властелин колец: Братство кольца",
-    genre: "Фэнтези",
-    year: "2001",
-    description:
-      "Сказания о Средиземье — это хроника Великой войны за Кольцо...",
-    imageUrl: "#",
-  },
-  {
-    id: "11",
-    title: "Властелин колец: Две крепости",
-    genre: "Фэнтези",
-    year: "2002",
-    description:
-      "Повелитель сил тьмы Саурон направляет свою бесчисленную армию под стены Минас-Тирита, крепости Последней Надежды. Он предвкушает близкую победу, но именно это мешает ему заметить две крохотные фигурки — хоббитов, приближающихся к Роковой Горе, где им предстоит уничтожить Кольцо Всевластья.",
-    imageUrl: "#",
-  },
-];
+import { useFetchFilmsQuery } from '../../store/services/films';
+import { ShortMovieInfo } from '../../shared/types';
+import styles from './Films.module.css';
+import Film from '../../features/film/Film';
 
-function Films() {
+const Films: React.FC = () => {
+  const { data, error, isLoading } = useFetchFilmsQuery({}) as ReturnType<typeof useFetchFilmsQuery>;
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error loading films</div>;
+  }
+
   return (
     <div className={styles.films}>
-      {films.map(({ id, title, genre, year, description, imageUrl }, index) => (
-        <Film
-          key={index}
-          id={id}
-          title={title}
-          genre={genre}
-          year={year}
-          description={description}
-          imageUrl={imageUrl}
-        />
+      {data?.search_result.map((film: ShortMovieInfo) => (
+        <Film key={film.id} {...film} />
       ))}
     </div>
   );
-}
+};
 
 export default Films;
