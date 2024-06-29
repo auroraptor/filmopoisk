@@ -5,10 +5,12 @@ import LoginForm from '../../widgets/loginForm/LoginForm';
 import classNames from 'classnames';
 import styles from './Header.module.css';
 import { textLogo } from '../../shared/constants/titles';
+import { useFetchTokenMutation } from '../../store/services/auth';
 
 function Header() {
   const [buttonText, setButtonText] = useState('Войти');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [fetchToken, { isLoading, error }] = useFetchTokenMutation();
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -18,10 +20,16 @@ function Header() {
     setIsModalOpen(false);
   };
 
-  const handleLogin = (username: string, password: string) => {
-    console.log('Login:', { username, password });
-    setButtonText('Выйти');
-    setIsModalOpen(false);
+  const handleLogin = async (username: string, password: string) => {
+    try {
+      const response = await fetchToken({ username, password }).unwrap();
+      console.log('Token:', response.token);
+      localStorage.setItem('token', response.token);
+      setButtonText('Выйти');
+      setIsModalOpen(false);
+    } catch (error) {
+      console.error('Failed to fetch token', error);
+    }
   };
 
   return (
@@ -37,6 +45,8 @@ function Header() {
       </div>
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
         <LoginForm onSubmit={handleLogin} onCancel={handleCloseModal} />
+        {isLoading && <p>Loading...</p>}
+        {error && <p>Error: {error.message}</p>}
       </Modal>
     </header>
   );
