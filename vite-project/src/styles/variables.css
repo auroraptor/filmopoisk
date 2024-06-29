@@ -1,12 +1,12 @@
 :root {
   --color-background: #333333;
+  --color-text-white: #ffffff;
   --color-button-border: #e94e00;
   --color-button-background: #e94e00;
-  --color-button-text: #ffffff;
 
   /* Button states */
   --color-button-signin-background: var(--color-button-background);
-  --color-button-signin-text: var(--color-button-text);
+  --color-button-signin-text: var(--color-text-white);
 
   --color-button-signout-background: transparent;
   --color-button-signout-text: var(--color-button-background);
