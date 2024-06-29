@@ -1,0 +1,36 @@
+.header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 100;
+    background-color: #333333;
+    height: 88px;
+    padding: 24px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.userConteiner {
+    display: flex;
+    gap: 16;
+    justify-content: flex-end;
+}
+
+.button {
+    width: 76px;
+    height: 40px;
+    border-radius: 8px;
+    border: 1px solid #E94E00;
+}
+
+.buttonSignin {
+    background-color: #E94E00;
+    color: #FFFFFF
+}
+
+.buttonSignout {
+    background-color: transparent;
+    color: #E94E00;
+}
