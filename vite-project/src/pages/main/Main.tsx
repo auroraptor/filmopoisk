@@ -1,7 +1,7 @@
 import Content from "../../shared/components/content/Content";
 import Films from "../../widgets/films/Films";
 import Filters from "../../widgets/filters/Filters";
-import Search from '../../features/search/Search';
+import Search from '../../features/searchInput/SearchInput';
 import styles from "./Main.module.css";
 
 

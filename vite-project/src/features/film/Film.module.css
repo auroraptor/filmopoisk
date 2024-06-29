@@ -1,0 +1,33 @@
+@import url("../../shared/styles/variables.css");
+
+.filmCard {
+    display: flex;
+    background-color: var(--color-white);
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+  }
+  
+  .filmImage {
+    width: 120px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 16px;
+  }
+  
+  .filmDetails {
+    flex: 1;
+  }
+  
+  .filmTitle {
+    margin: 0 0 8px 0;
+  }
+  
+  .filmRating {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  

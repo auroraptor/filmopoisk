@@ -1,0 +1,31 @@
+@import url("../../shared/styles/variables.css");
+
+.searchInputContainer {
+  position: relative;
+  width: 400px;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 10px 40px 10px 16px;
+  border: 1px solid var(--color-border-gray);
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+}
+
+.searchInput:focus {
+  border-color: var(--color-select-border-focused);
+}
+
+.clearButton {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: var(--color-text-gray);
+}
