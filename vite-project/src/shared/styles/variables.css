@@ -12,5 +12,11 @@
   --color-button-signout-background: transparent;
   --color-button-signout-text: var(--color-button-background);
 
+  --color-text-gray: rgba(153, 159, 166, 1);
+  --color-border-gray: rgba(225, 227, 230, 1);
+  --color-select-border-focused: #e94e00; 
+  --color-select-item-hover: rgba(225, 227, 230, 0.8);
+
   --font-primary: "Roboto", sans-serif;
+
 }

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import styles from './Header.module.css';
-import { ButtonText } from './header';
+import { ButtonText } from './types';
 import { textLogo } from '../../shared/constants';
 
 function Header() {

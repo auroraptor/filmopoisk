@@ -1,0 +1,37 @@
+@import url("../../shared/styles/variables.css");
+
+.filter {
+  margin-bottom: 16px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.select {
+  width: 360px;
+  height: 40px;
+  /* padding: 10px 16px; */
+  border: 1px solid var(--color-border-gray);
+  border-radius: 8px;
+  font-size: 16px;
+  appearance: none;
+  background: var(--color-white) url('data:image/svg+xml;charset=US-ASCII,<svg%20xmlns="http://www.w3.org/2000/svg"%20width="24"%20height="24"%20viewBox="0%200%2024%2024"><path%20fill="%23e94e00"%20d="M7%2010l5%205%205-5z"/></svg>') no-repeat right 16px center;
+  background-size: 16px;
+  padding-left: 16px;
+  font-family: var(--font-primary);
+}
+
+.select:focus {
+  border-color: var(--color-select-border-focused);
+}
+
+.select option {
+  color: var(--color-text-gray);
+}
+
+.select option:hover {
+  background-color: var(--color-select-item-hover);
+}

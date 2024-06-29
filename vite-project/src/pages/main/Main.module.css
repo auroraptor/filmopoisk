@@ -1,0 +1,12 @@
+@import url("../../shared/styles/variables.css");
+
+.main {
+    background-color: var(--color-page-background);
+    margin-top: 88px; /* Высота header */
+    padding: 20px 32px 88px;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+}
