@@ -40,7 +40,7 @@
 .avatar {
   width: 24px;
   height: 24px;
-  background-image: url("../../styles/assets/icons/person.svg");
+  background-image: url("../../shared/assets/icons/person.svg");
 }
 
 .button {
