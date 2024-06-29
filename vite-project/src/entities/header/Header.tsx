@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import './styles.css';
-import { ButtonText } from './types';
+import classNames from 'classnames';
+import styles from './Header.module.css';
+import { ButtonText } from './header';
 import { textLogo } from '../../shared/constants';
 
 function Header() {
@@ -9,13 +10,13 @@ function Header() {
   const [buttonText, setButtonText] = useState<ButtonText>('Войти');
 
     return (
-      <header className="header">
-        <Link to="/" className="logo">{textLogo}</Link>
-        <div className="userContainer">
-          <div className="avatarContainer">
-            <div className="avatar"/>
-          </div>
-          <button className="button buttonSignin">{buttonText}</button>
+      <header className={styles.header}>
+        <Link to="/" className={styles.logo}>{textLogo}</Link>
+        <div className={styles.userContainer}>
+          {/* <div className={styles.userContainer}>
+            <div className={styles.avatar}/>
+          </div> */}
+          <button className={classNames(styles.button, styles.buttonSignin)}>{buttonText}</button>
         </div>
       </header>
     )
