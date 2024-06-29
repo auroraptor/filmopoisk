@@ -1,0 +1,47 @@
+@import url(../../shared/styles/variables.css);
+
+.rating {
+  border: none;
+  float: left;
+}
+
+.rating > input {
+  display: none;
+}
+
+.rating > label {
+  display: block;
+  width: 16px;
+  height: 16px;
+  margin: 5px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url('../../shared/assets/icons/star.svg'); 
+  float: right;
+}
+
+.rating > input:checked ~ label,
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+  background-image: url('../../shared/assets/icons/star-hover.svg'); 
+  cursor: pointer;
+}
+
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+  background-image: url('../../shared/assets/icons/star-filled.svg');
+}
+
+.rating > input:checked ~ label {
+  background-image: url('../../shared/assets/icons/star-filled.svg');
+}
+
+.rating > input:checked + label:hover {
+  background-image: url('../../shared/assets/icons/star-filled.svg');
+}
+
+.rating > input:checked:hover + label,
+.rating > input:checked:hover ~ label {
+  background-image: url('../../shared/assets/icons/star-filled.svg');
+}

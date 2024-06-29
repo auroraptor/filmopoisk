@@ -1,22 +1,29 @@
 :root {
   --color-header-background: #333333;
   --color-page-background: rgba(237, 237, 237, 1);
+
   --color-white: #ffffff;
-  --color-button-border: #e94e00;
-  --color-button-background: #e94e00;
+  --color-black: #000000;
+  --color-orange: #e94e00;
+  --color-gray: rgba(171, 171, 171, 1);
 
   /* Button states */
-  --color-button-signin-background: var(--color-button-background);
+  --color-button-border: var( --color-orange);
+
+  --color-button-signin-background: var( --color-orange);
   --color-button-signin-text: var(--color-white);
 
   --color-button-signout-background: transparent;
-  --color-button-signout-text: var(--color-button-background);
+  --color-button-signout-text: var( --color-orange);
 
+  /* Input states*/
   --color-text-gray: rgba(153, 159, 166, 1);
   --color-border-gray: rgba(225, 227, 230, 1);
-  --color-select-border-focused: #e94e00; 
+  --color-select-border-focused: var(--color-orange); 
   --color-select-item-hover: rgba(225, 227, 230, 0.8);
 
-  --font-primary: "Roboto", sans-serif;
+  /* Film states */
+  --color-film-label: var(--color-gray);
 
+  --font-primary: "Roboto", sans-serif;
 }

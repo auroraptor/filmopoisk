@@ -1,32 +1,70 @@
 @import url("../../shared/styles/variables.css");
 
 .filmCard {
+  display: flex;
+  background-color: var(--color-white);
+  padding: 16px;
+  border-radius: 8px;
+  gap: 16px;
+}
+
+.filmImage {
+  width: 100px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid var(--color-orange);
+}
+
+.filmDetailsContainer {
     display: flex;
-    background-color: var(--color-white);
-    padding: 16px;
-    border-radius: 8px;
-  }
-  
-  .filmImage {
-    width: 120px;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-right: 16px;
-  }
-  
-  .filmDetails {
-    flex: 1;
-  }
-  
-  .filmTitle {
-    margin: 0 0 8px 0;
-  }
-  
-  .filmRating {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  
+  justify-content: space-between;
+  width: 100%;
+}
+
+.filmDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 600px;
+}
+
+.filmLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.filmTitle {
+  font-size: 20px;
+  line-height: 20px;
+  font-weight: bold;
+  color: var(--color-black);
+}
+
+.filmInfo {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.label {
+  width: 90px;
+  color: var(--color-film-label);
+  margin: 0;
+  vertical-align: top;
+}
+
+.value {
+  color: var(--color-black);
+  margin: 0 0 8px 16px;
+  display: flex;
+  max-width: 600px;
+  width: 100%;
+}
+
+.filmRating {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

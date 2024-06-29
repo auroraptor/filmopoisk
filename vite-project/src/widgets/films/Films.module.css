@@ -3,8 +3,3 @@
     flex-direction: column;
     gap: 16px;
 }
-
-.filmLink {
-    text-decoration: none;
-    color: inherit; 
-  }
