@@ -14,9 +14,9 @@ function Film({ title, genre, year, description, imageUrl }: FilmProps) {
       <img src={imageUrl} alt={title} className={styles.filmImage} />
       <div className={styles.filmDetails}>
         <h3 className={styles.filmTitle}>{title}</h3>
-        <p><strong>Жанр:</strong> {genre}</p>
-        <p><strong>Год выпуска:</strong> {year}</p>
-        <p><strong>Описание:</strong> {description}</p>
+        <p>Жанр: {genre}</p>
+        <p>Год выпуска: {year}</p>
+        <p>Описание: {description}</p>
       </div>
       <div className={styles.filmRating}>
         <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
