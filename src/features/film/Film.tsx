@@ -3,7 +3,7 @@ import styles from "./Film.module.css";
 import Raiting from "../raiting/Rating";
 
 type FilmProps = {
-  id: number | string;
+  id: string;
   title: string;
   genre: string;
   year: string;

@@ -2,14 +2,16 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Header from "../../entities/header/Header";
 import styles from "./FilmPage.module.css";
+import { fetchFilmById } from "../../shared/utils/fetchFilmById";
+import Film from "../../features/film/Film";
 
 function FilmPage() {
   const { id } = useParams();
-  const [film, setFilm] = useState(null);
+  const [film, setFilm] = useState<typeof Film | null>(null);
 
   useEffect(() => {
-    // Здесь можно сделать запрос к API для получения данных о фильме по ID
-    // fetchFilmById(id).then(data => setFilm(data));
+    if (!id) return;
+    fetchFilmById(id).then((data) => setFilm(data));
   }, [id]);
 
   if (!film) {
@@ -21,17 +23,14 @@ function FilmPage() {
       <Header />
       <div className={styles.filmPage}>
         <div className={styles.filmDetails}>
-          {/* Отображение данных фильма */}
           <h1>{film.title}</h1>
-          <img src={film.poster} alt={film.title} />
+          <img src={film.imageUrl} alt={film.title} />
           <p>{film.description}</p>
-          {/* Другие данные */}
         </div>
         <div className={styles.actorsSlider}>
-          {/* Слайдер с актерами */}
           <h2>Актёры</h2>
           <div className={styles.actors}>
-            {film.actors.map(actor => (
+            {film.actors.map((actor) => (
               <div key={actor.id} className={styles.actor}>
                 <img src={actor.photo} alt={actor.name} />
                 <p>{actor.name}</p>

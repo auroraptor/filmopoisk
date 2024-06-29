@@ -1,7 +1,7 @@
 import Content from "../../shared/components/content/Content";
 import Films from "../../widgets/films/Films";
 import Filters from "../../widgets/filters/Filters";
-import Search from '../../features/searchInput/SearchInput';
+import SearchInput from '../../features/searchInput/SearchInput';
 import styles from "./Main.module.css";
 
 
@@ -10,7 +10,7 @@ function Main() {
     <main className={styles.main}>
       <Filters />
       <Content>
-        <Search />
+        <SearchInput />
         <Films />
       </Content>
     </main>

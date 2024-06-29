@@ -2,8 +2,8 @@ import styles from './SearchInput.module.css';
 
 type SearchInputProps = {
   placeholder?: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onClear?: () => void;
 };
 
