@@ -1,5 +1,6 @@
 :root {
-  --color-background: #333333;
+  --color-header-background: #333333;
+  --color-page-background: rgba(237, 237, 237, 1);
   --color-white: #ffffff;
   --color-button-border: #e94e00;
   --color-button-background: #e94e00;
