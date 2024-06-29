@@ -1,26 +1,45 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Modal from '../modal/Modal';
+import LoginForm from '../../widgets/loginForm/LoginForm';
 import classNames from 'classnames';
 import styles from './Header.module.css';
-import { ButtonText } from './types';
 import { textLogo } from '../../shared/constants';
 
 function Header() {
+  const [buttonText, setButtonText] = useState('Войти');
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const [buttonText, setButtonText] = useState<ButtonText>('Войти');
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
 
-    return (
-      <header className={styles.header}>
-        <Link to="/" className={styles.logo}>{textLogo}</Link>
-        <div className={styles.userContainer}>
-          {/* <div className={styles.userContainer}>
-            <div className={styles.avatar}/>
-          </div> */}
-          <button className={classNames(styles.button, styles.buttonSignin)}>{buttonText}</button>
-        </div>
-      </header>
-    )
-  }
-  
-  export default Header;
-  
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleLogin = (username: string, password: string) => {
+    console.log('Login:', { username, password });
+    setButtonText('Выйти');
+    setIsModalOpen(false);
+  };
+
+  return (
+    <header className={styles.header}>
+      <Link to="/" className={styles.logo}>{textLogo}</Link>
+      <div className={styles.userContainer}>
+        <button
+          className={classNames(styles.button, styles.buttonSignin)}
+          onClick={handleOpenModal}
+        >
+          {buttonText}
+        </button>
+      </div>
+      <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
+        <LoginForm onSubmit={handleLogin} onCancel={handleCloseModal} />
+      </Modal>
+    </header>
+  );
+}
+
+export default Header;
