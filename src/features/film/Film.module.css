@@ -4,7 +4,7 @@
   display: flex;
   background-color: var(--color-white);
   padding: 16px;
-  border-radius: 8px;
+  border-radius: var(--border-radius-size-m);
   gap: 16px;
 }
 
@@ -12,11 +12,11 @@
   width: 100px;
   height: 120px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: var(--border-radius-size-m);
 }
 
 .filmDetailsContainer {
-    display: flex;
+  display: flex;
   justify-content: space-between;
   width: 100%;
 }

@@ -46,7 +46,7 @@
 .button {
   width: 76px;
   height: 40px;
-  border-radius: 8px;
+  border-radius: var(--border-radius-size-m);
   font-weight: 500;
   font-size: 14px;
   line-height: 20px;

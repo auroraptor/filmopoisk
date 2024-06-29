@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from "./Film.module.css";
-import Raiting from "../raiting/Rating";
+import Raiting from "../rating/Rating";
 import { ShortMovieInfo } from "../../shared/types";
 
 function Film({ id, title, genre, release_year, description, poster }: ShortMovieInfo) {

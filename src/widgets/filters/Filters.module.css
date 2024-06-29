@@ -2,7 +2,7 @@
 
 .filtersContainer {
     background-color: var(--color-white);
-    border-radius: 8px;
+    border-radius: var(--border-radius-size-m);
     width: 408px;
     height: 232px;
     display: flex;

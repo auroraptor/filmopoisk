@@ -26,4 +26,10 @@
   --color-film-label: var(--color-gray);
 
   --font-primary: "Roboto", sans-serif;
+
+  /* Padding */
+  --page-padding: 108px 32px 88px;
+
+  /* border-radius */
+  --border-radius-size-m: 8px;
 }

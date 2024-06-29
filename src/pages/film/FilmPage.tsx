@@ -1,13 +1,15 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Header from "../../entities/header/Header";
-import styles from "./FilmPage.module.css";
 import { fetchFilmById } from "../../shared/utils/fetchFilmById";
-import Film from "../../features/film/Film";
+import { FullMovieInfo } from "../../shared/types";
+import FilmDetails from "../../widgets/filmDetails/FilmDetails";
+import ActorsSlider from "../../widgets/actorsSlider/ActorsSlider";
+import styles from "./FilmPage.module.css";
 
 function FilmPage() {
   const { id } = useParams();
-  const [film, setFilm] = useState<typeof Film | null>(null);
+  const [film, setFilm] = useState<FullMovieInfo | null>(null);
 
   useEffect(() => {
     if (!id) return;
@@ -22,22 +24,8 @@ function FilmPage() {
     <>
       <Header />
       <div className={styles.filmPage}>
-        <div className={styles.filmDetails}>
-          <h1>{film.title}</h1>
-          <img src={film.imageUrl} alt={film.title} />
-          <p>{film.description}</p>
-        </div>
-        <div className={styles.actorsSlider}>
-          <h2>Актёры</h2>
-          <div className={styles.actors}>
-            {film.actors.map((actor) => (
-              <div key={actor.id} className={styles.actor}>
-                <img src={actor.photo} alt={actor.name} />
-                <p>{actor.name}</p>
-              </div>
-            ))}
-          </div>
-        </div>
+        <FilmDetails film={film} />
+        <ActorsSlider actors={film.actors} />
       </div>
     </>
   );
