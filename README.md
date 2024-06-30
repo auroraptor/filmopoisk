@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Filmopoisk
 
-## Getting Started
+Проект представляет собой миграцию SPA на Next.js. 
 
-First, run the development server:
+## Описание
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Этот проект демонстрирует процесс миграции приложения на React с использованием Next.js для серверного рендеринга и улучшения производительности. 
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Установка и запуск
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Шаги для установки
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. Клонируйте репозиторий:
+    ```sh
+    git clone git@github.com:auroraptor/filmopoisk.git
+    ```
+2. Переключитесь на ветку `next`:
+    ```sh
+    git checkout next
+    ```
+3. Установите зависимости:
+    ```sh
+    npm install
+    ```
 
-## Learn More
+### Запуск приложения
 
-To learn more about Next.js, take a look at the following resources:
+1. Для запуска приложения используйте команду:
+    ```sh
+    npm run dev
+    ```
+2. Приложение будет доступно по адресу [http://localhost:3000](http://localhost:3000).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Зависимости
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Для корректной работы приложения необходимо поднять бэкенд-сервер, который обеспечивает API для получения данных. Убедитесь, что у вас запущен соответствующий сервер, предоставляющий необходимые эндпоинты для работы приложения.
 
-## Deploy on Vercel
+## Основные функции
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Фильтрация фильмов по жанрам и годам выпуска.
+- Поиск фильмов по названию.
+- Пагинация списка фильмов.
+- Отображение детальной информации о фильме.
+- Авторизация пользователя и возможность оценки фильмов.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Структура проекта
+
+- `src/pages`: Компоненты страниц Next.js.
+- `src/components`: Переиспользуемые компоненты.
+- `src/store`: Redux store и связанные с ним файлы.
+- `src/shared`: Общие утилиты и типы.
+
+## Команды
+
+- `npm run dev`: Запуск приложения в режиме разработки.
+- `npm run build`: Сборка приложения для продакшн.
+- `npm start`: Запуск собранного приложения.
+
+## Требования
+
+- Node.js версии 18.0 или выше.
+- [Бэкенд сервер для предоставления данных](https://disk.yandex.ru/d/89vxMorGgTVKCg). 
+
+## Контакты
+
+Если у вас возникли вопросы или предложения, пожалуйста, открывайте issue, пишите в telegram, отправляйте почтовых голубей.
