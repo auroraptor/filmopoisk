@@ -18,7 +18,13 @@ interface RateMovieResponse {
 
 export const filmsApi = createApi({
   reducerPath: 'filmsApi',
-  baseQuery: fetchBaseQuery({ baseUrl: `${API_URL}` }),
+  baseQuery: fetchBaseQuery({ baseUrl: `${API_URL}`,prepareHeaders: (headers, { getState }) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      headers.set('Authorization', `Bearer ${token}`);
+    }
+    return headers;
+  }, }),
   endpoints: (builder) => ({
     fetchFilms: builder.query<FetchFilmsResponse, Record<string, string>>({
       query: (params) => ({

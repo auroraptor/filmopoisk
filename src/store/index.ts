@@ -3,9 +3,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { filmsApi } from './services/films';
 import { authApi } from './services/auth';
+import authReducer from './authSlice';
 
 const store = configureStore({
   reducer: {
+    auth: authReducer,
     [filmsApi.reducerPath]: filmsApi.reducer,
     [authApi.reducerPath]: authApi.reducer,
   },

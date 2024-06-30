@@ -1,12 +1,15 @@
 import { FullMovieInfo } from "../../shared/types";
 import Rating from "../../shared/components/rating/Rating";
 import styles from "./FilmDetails.module.css";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 
 interface FilmDetailsProps {
   film: FullMovieInfo;
 }
 
 const FilmDetails: React.FC<FilmDetailsProps> = ({ film }) => {
+  const isAuth = useSelector((state: RootState) => state.auth.isAuth);
   return (
     <section className={styles.filmDetailsContainer}>
       <div className={styles.filmDetails}>
@@ -31,7 +34,7 @@ const FilmDetails: React.FC<FilmDetailsProps> = ({ film }) => {
               <p className={styles.value}>{film.description}</p>
             </div>
           </div>
-          <Rating id={film.id} className={styles.filmRating} />
+          {isAuth && <Rating id={film.id} className={styles.filmRating} />}
         </div>
       </div>
     </section>

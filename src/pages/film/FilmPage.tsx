@@ -21,13 +21,10 @@ function FilmPage() {
   }
 
   return (
-    <>
-      <Header />
-      <div className={styles.filmPage}>
-        <FilmDetails film={film} />
-        <ActorsSlider actors={film.actors} />
-      </div>
-    </>
+    <div className={styles.filmPage}>
+      <FilmDetails film={film} />
+      <ActorsSlider actors={film.actors} />
+    </div>
   );
 }
 

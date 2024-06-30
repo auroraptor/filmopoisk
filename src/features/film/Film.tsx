@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom";
 import styles from "./Film.module.css";
-import Raiting from "../../shared/components/rating/Rating";
+import Rating from "../../shared/components/rating/Rating";
 import { ShortMovieInfo } from "../../shared/types";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 
 function Film({ id, title, genre, release_year, description, poster }: ShortMovieInfo) {
+  const isAuth = useSelector((state: RootState) => state.auth.isAuth);
+  
   return (
     <article className={styles.filmCard}>
       <img src={poster} alt={title} className={styles.filmImage} />
@@ -30,7 +34,7 @@ function Film({ id, title, genre, release_year, description, poster }: ShortMovi
             </tbody>
           </table>
         </div>
-        <Raiting id={id}/>
+        {isAuth && <Rating id={id} />}
       </div>
     </article>
   );

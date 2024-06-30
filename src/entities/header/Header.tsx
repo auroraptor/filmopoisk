@@ -1,26 +1,29 @@
-// src/entities/header/Header.tsx
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import Modal from "../modal/Modal";
-import LoginForm from "../../widgets/loginForm/LoginForm";
-import classNames from "classnames";
-import styles from "./Header.module.css";
-import { textLogo } from "../../shared/constants/titles";
-import { useFetchTokenMutation } from "../../store/services/auth";
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import Modal from '../modal/Modal';
+import LoginForm from '../../widgets/loginForm/LoginForm';
+import classNames from 'classnames';
+import { useFetchTokenMutation } from '../../store/services/auth';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../store';
+import { login, logout } from '../../store/authSlice';
+import styles from './Header.module.css';
+import { textLogo } from '../../shared/constants/titles';
 
 function Header() {
   const [buttonText, setButtonText] = useState("Войти");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const dispatch = useDispatch();
+  const isAuth = useSelector((state: RootState) => state.auth.isAuth);
   const [fetchToken, { isLoading, error }] = useFetchTokenMutation();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      setIsLoggedIn(true);
+    if (isAuth) {
       setButtonText("Выйти");
+    } else {
+      setButtonText("Войти");
     }
-  }, []);
+  }, [isAuth]);
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -34,8 +37,7 @@ function Header() {
     try {
       const response = await fetchToken({ username, password }).unwrap();
       localStorage.setItem("token", response.token);
-      setButtonText("Выйти");
-      setIsLoggedIn(true);
+      dispatch(login());
       setIsModalOpen(false);
     } catch (error) {
       console.error("Failed to fetch token", error);
@@ -43,9 +45,8 @@ function Header() {
   };
 
   const handleLogout = () => {
-    localStorage.clear();
-    setButtonText("Войти");
-    setIsLoggedIn(false);
+    localStorage.removeItem("token");
+    dispatch(logout());
   };
 
   return (
@@ -54,7 +55,7 @@ function Header() {
         {textLogo}
       </Link>
       <div className={styles.userContainer}>
-        {isLoggedIn && (
+        {isAuth && (
           <div className={styles.avatarContainer}>
             <div className={styles.avatar} />
           </div>
@@ -69,7 +70,7 @@ function Header() {
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
         <LoginForm onSubmit={handleLogin} onCancel={handleCloseModal} />
         {isLoading && <p>Loading...</p>}
-        {error && <p>Error: {error.message}</p>}
+        {(error) && <p>Error: {error.message}</p>}
       </Modal>
     </header>
   );
