@@ -8,7 +8,7 @@ function Main() {
     <main className={styles.main}>
       <Filters />
       <Content>
-      <Films />
+        <Films />
       </Content>
     </main>
   );
