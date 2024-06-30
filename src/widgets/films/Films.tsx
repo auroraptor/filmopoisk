@@ -1,27 +1,31 @@
-// src/components/films/Films.tsx
+import { useState } from "react";
+import { useFetchFilmsQuery } from "../../store/services/films";
+import Film from "../../features/film/Film";
+import Pagination from "../../features/pagination/Pagination";
+import styles from "./Films.module.css";
 
-import { useFetchFilmsQuery } from '../../store/services/films';
-import { ShortMovieInfo } from '../../shared/types';
-import styles from './Films.module.css';
-import Film from '../../features/film/Film';
+const Films = () => {
+  const [page, setPage] = useState(1);
+  const { data, error, isLoading } = useFetchFilmsQuery({
+    page: page.toString(),
+  });
 
-const Films: React.FC = () => {
-  const { data, error, isLoading } = useFetchFilmsQuery({}) as ReturnType<typeof useFetchFilmsQuery>;
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error loading films</div>;
-  }
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error loading films</div>;
 
   return (
-    <div className={styles.films}>
-      {data?.search_result.map((film: ShortMovieInfo) => (
-        <Film key={film.id} {...film} />
-      ))}
-    </div>
+    <>
+      <div className={styles.filmsContainer}>
+        {data?.search_result.map((film) => (
+          <Film key={film.id} {...film} />
+        ))}
+      </div>
+      <Pagination
+        currentPage={page}
+        totalPages={data?.total_pages || 1}
+        onPageChange={setPage}
+      />
+    </>
   );
 };
 

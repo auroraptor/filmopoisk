@@ -4,7 +4,6 @@ import Filters from "../../widgets/filters/Filters";
 import SearchInput from '../../features/searchInput/SearchInput';
 import styles from "./Main.module.css";
 
-
 function Main() {
   return (
     <main className={styles.main}>

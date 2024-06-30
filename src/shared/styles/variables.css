@@ -16,6 +16,8 @@
   --color-button-signout-background: transparent;
   --color-button-signout-text: var( --color-orange);
 
+  --color-button-disabled: rgba(233, 234, 237, 1)
+
   /* Input states*/
   --color-text-gray: rgba(153, 159, 166, 1);
   --color-border-gray: rgba(225, 227, 230, 1);
