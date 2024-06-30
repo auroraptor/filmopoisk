@@ -1,30 +1,122 @@
-# React + TypeScript + Vite
+# Filmopoisk
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Проект представляет собой реализацию клиента для сервиса Фильмопоиск с использованием React + TypeScript + Vite.
 
-Currently, two official plugins are available:
+## Описание
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Этот проект создан для демонстрации возможностей реализации SPA на базе React и TypeScript с использованием Vite. В проекте также предусмотрена миграция на Next.js, которая находится в отдельной ветке.
 
-## Expanding the ESLint configuration
+## Установка и запуск
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Шаги для установки
 
-- Configure the top-level `parserOptions` property like this:
+1. Клонируйте репозиторий:
+    ```sh
+    git clone git@github.com:auroraptor/filmopoisk.git
+    ```
+2. Переключитесь на главную ветку:
+    ```sh
+    git checkout main
+    ```
+3. Установите зависимости:
+    ```sh
+    npm install
+    ```
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+### Запуск приложения
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+1. Для запуска приложения используйте команду:
+    ```sh
+    npm run dev
+    ```
+2. Приложение будет доступно по адресу [http://localhost:5173/](http://localhost:5173/).
+
+## Зависимости
+
+Для корректной работы приложения необходимо поднять [бэкенд-сервер](https://disk.yandex.ru/d/89vxMorGgTVKCg), который обеспечивает API для получения данных. Убедитесь, что у вас запущен соответствующий сервер, предоставляющий необходимые эндпоинты для работы приложения.
+
+## Основные функции
+
+- Фильтрация фильмов по жанрам и годам выпуска.
+- Поиск фильмов по названию.
+- Пагинация списка фильмов.
+- Отображение детальной информации о фильме.
+- Авторизация пользователя и возможность оценки фильмов.
+
+## Структура проекта
+
+- `src/app`: Основные компоненты приложения, включая лейаут.
+- `src/components`: Переиспользуемые компоненты.
+- `src/entities`: Главные сущности, такие как header и modal.
+- `src/features`: Основные функциональные части, такие как фильм, фильтр, пагинация и поиск.
+- `src/pages`: Компоненты страниц.
+- `src/shared`: Общие утилиты, константы, типы и стили.
+- `src/store`: Redux store и связанные с ним файлы.
+
+## Команды
+
+- `npm run dev`: Запуск приложения в режиме разработки.
+- `npm run build`: Сборка приложения для продакшн.
+- `npm start`: Запуск собранного приложения.
+
+## Требования
+
+- Node.js версии 18.0 или выше.
+- Бэкенд сервер для предоставления данных.
+
+## Чек-лист
+
+### Базовые требования:
+
+- [x] Создан github-репозиторий, в нём есть README, gitignore;
+- [x] Проект запускается;
+- [x] Вёрстка соответствует дизайн-макетам (допускаются минимальные отхождения, адаптив не требуется);
+
+### Функциональные требования:
+
+#### Шапка:
+- [x] Позиционируется липко (стики);
+
+#### Авторизация:
+- [x] Для реализации модального окна используется портал;
+- [x] После успешной авторизации кнопка «Войти» меняется на заглушку иконки пользователя и кнопку «Выйти»;
+- [x] Сохраняем авторизационный токен из ответа ручки бэка /login (например, в localStorage);
+- [x] С токеном стоит работать через thunk;
+- [x] По клику на кнопку «Выйти» удаляем токен и снимаем авторизацию;
+- [x] При инициализации приложения проверяем авторизационный токен;
+
+#### Реализована страница списка фильмов:
+- [x] Поиск:
+  - [x] Поиск происходит во время ввода пользователем символов. Дёргаем ручку /search;
+- [x] Фильтры:
+  - [x] Реализованы фильтры с dropdown;
+  - [x] Фильтры сохраняются в query-params;
+- [x] Реализован список фильмов с пагинацией;
+
+#### Страница фильма:
+- [x] Реализована работа с получением данных:
+  - [x] Дёргаем ручку /movie:id;
+  - [x] Соответствующие данные отрисованы;
+- [x] Возможность поставить оценку:
+  - [x] Оценку для фильма достаём из ручки /movie/:id;
+  - [x] Если пользователь авторизован, даём возможность поставить оценку — запрос мутации;
+  - [] После выставления оценки обновляем кеш запроса /movie/:id;
+
+### Общий функционал:
+- [x] Реализовать единообразную обработку ошибок для запросов;
+- [] Реализован лоадер;
+- [x] Используем debounce для поиска фильма и выставления оценки;
+
+### Стор:
+- [x] Используется rtk и rtk-query;
+- [x] Данные корректно разбиты на модули (пример — авторизация, searchParams из фильтров);
+- [x] Селекторы написаны оптимально (нет переизбытка дублирования);
+
+### Миграция на Next:
+- [x] Реализована миграция с использованием SSR; 
+- [] Для картинок используется Image некста. Скрины фильма, которые вне вьюпорта грузятся лениво;
+- [] Фильтры реализованы с помощью сегментов вместо query-параметров (находится в ветке `next`).
+
+## Контакты
+
+Если у вас возникли вопросы или предложения, пожалуйста, открывайте issue, пишите в telegram, отправляйте почтовых голубей.
