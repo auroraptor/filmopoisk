@@ -1,25 +1,34 @@
 .actorsSlider {
-    margin-top: 24px;
-  }
-  
-  .actors {
-    display: flex;
-    gap: 16px;
-  }
-  
-  .actor {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 160px;
-    text-align: center;
-  }
-  
-  .actorPhoto {
-    width: 160px;
-    height: 289px;
-    border-radius: var(--border-radius-size-m);
-    object-fit: cover;
-    margin-bottom: 8px;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.actorsTitle {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 600;
+}
+.actors {
+  display: flex;
+  gap: 16px;
+}
+
+.actor {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 160px;
+}
+
+.actorPhoto {
+  width: 160px;
+  height: 289px;
+  border-radius: var(--border-radius-size-m);
+  object-fit: cover;
+}
+
+.actorName {
+  font-size: 14px;
+  line-height: 20px;
+}

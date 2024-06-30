@@ -1,18 +1,19 @@
-@import url('../../shared/styles/variables.css');
+@import url("../../shared/styles/variables.css");
 
 .filmDetailsContainer {
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    background-color: var(--color-white);
-    border-radius: var(--border-radius-size-m);
-    padding: 22px 16px;
-    width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  background-color: var(--color-white);
+  border-radius: var(--border-radius-size-m);
+  padding: 22px 16px;
+  width: 100%;
 }
 
 .filmDetails {
   display: flex;
   gap: 16px;
+  position: relative;
 }
 
 .filmPoster {
@@ -22,27 +23,44 @@
   border-radius: var(--border-radius-size-m);
 }
 
+.filmRating {
+  position: absolute;
+  right: 0;
+}
+
 .details {
   display: flex;
   flex-direction: column;
 }
 
 .title {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 16px;
+  font-size: 32px;
+  line-height: 32px;
+  font-weight: 600;
+  margin: 0 0 16px;
 }
 
 .filmInfo {
   margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .label {
-  font-weight: bold;
-  width: 100px;
-  vertical-align: top;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 600;
+  margin-right: 8px;
 }
 
 .value {
-  width: 100%;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.description .value:last-child {
+  margin-top: 16px;
+  font-size: 16px;
+  line-height: 24px;
 }

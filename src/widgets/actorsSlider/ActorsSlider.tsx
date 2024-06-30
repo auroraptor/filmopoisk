@@ -8,17 +8,17 @@ interface ActorsSliderProps {
 
 const ActorsSlider: React.FC<ActorsSliderProps> = ({ actors }) => {
   return (
-    <div className={styles.actorsSlider}>
-      <h2>Актёры</h2>
+    <section className={styles.actorsSlider}>
+      <h2 className={styles.actorsTitle}>Актёры</h2>
       <div className={styles.actors}>
         {actors.map((actor) => (
           <div key={actor.name} className={styles.actor}>
             <img src={actor.photo} alt={actor.name} className={styles.actorPhoto} />
-            <p>{actor.name}</p>
+            <p className={styles.actorName}>{actor.name}</p>
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

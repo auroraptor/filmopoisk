@@ -12,13 +12,13 @@ function Filters() {
   const yearOptions = ["Выберите год", "2023", "2022", "2021", "2020"];
 
   return (
-    <div className={styles.filtersContainer}>
+    <aside className={styles.filtersContainer}>
       <div className={styles.filters}>
-        <h2 className={styles.title}>Фильтр</h2>
+        <h3 className={styles.title}>Фильтр</h3>
         <Filter label="Жанр" options={genreOptions} />
         <Filter label="Год выпуска" options={yearOptions} />
       </div>
-    </div>
+    </aside>
   );
 }
 

@@ -1,12 +1,14 @@
+import classNames from "classnames";
 import styles from "./Rating.module.css";
 
 type RatingProps = {
   id: string | number;
+  className?: string;
 }
 
-function Rating({ id }: RatingProps) {
+function Rating({ id, className }: RatingProps) {
   return (
-    <fieldset className={styles.rating}>
+    <fieldset className={classNames(styles.rating, className)}>
       <input type="radio" id={`star5-${id}`} name={`rating-${id}`} value="5" />
       <label className={styles.full} htmlFor={`star5-${id}`} title="Awesome - 5 stars"></label>
       <input type="radio" id={`star4-${id}`} name={`rating-${id}`} value="4" />
