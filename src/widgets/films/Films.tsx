@@ -1,21 +1,23 @@
-import { useEffect, useState } from "react";
-import { useFetchFilmsQuery } from "../../store/services/films";
-import Film from "../../features/film/Film";
-import Pagination from "../../features/pagination/Pagination";
-import SearchInput from "../../features/searchInput/SearchInput";
-import styles from "./Films.module.css";
-import { GENRES_MAP } from "../../shared/types";
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { useFetchFilmsQuery } from '../../store/services/films';
+import Film from '../../features/film/Film';
+import Pagination from '../../features/pagination/Pagination';
+import SearchInput from '../../features/searchInput/SearchInput';
+import styles from './Films.module.css';
+import { GENRES_MAP } from '../../shared/types';
 
 type FilmsProps = {
   filters: { genre: string; year: string };
 };
 
 function Films({ filters }: FilmsProps) {
-  const [page, setPage] = useState(1);
-  const [searchTitle, setSearchTitle] = useState("");
-  const [searchParams, setSearchParams] = useState<Record<string, string>>({});
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [page, setPage] = useState(Number(searchParams.get('page')) || 1);
+  const [searchTitle, setSearchTitle] = useState(searchParams.get('title') || '');
+  const [queryParams, setQueryParams] = useState<Record<string, string>>({});
 
-  const { data, isLoading, isError } = useFetchFilmsQuery(searchParams);
+  const { data, isLoading, isError } = useFetchFilmsQuery(queryParams);
 
   useEffect(() => {
     const params: Record<string, string> = { page: String(page) };
@@ -33,19 +35,39 @@ function Films({ filters }: FilmsProps) {
     if (filters.year) {
       params.release_year = filters.year;
     }
-    setSearchParams(params);
+    setQueryParams(params);
+    setSearchParams(params, { replace: true });
   }, [page, searchTitle, filters]);
 
   useEffect(() => {
     setPage(1);
   }, [searchTitle, filters]);
 
-  if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>Error loading films</div>;
-
   const handleSearchChange = (value: string) => {
     setSearchTitle(value);
+    setSearchParams(prev => {
+      const newParams = new URLSearchParams(prev);
+      if (value) {
+        newParams.set('title', value);
+      } else {
+        newParams.delete('title');
+      }
+      newParams.set('page', '1');
+      return newParams;
+    });
   };
+
+  const handlePageChange = (newPage: number) => {
+    setPage(newPage);
+    setSearchParams(prev => {
+      const newParams = new URLSearchParams(prev);
+      newParams.set('page', String(newPage));
+      return newParams;
+    });
+  };
+
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error loading films</div>;
 
   return (
     <>
@@ -53,10 +75,7 @@ function Films({ filters }: FilmsProps) {
         placeholder="Название фильма"
         value={searchTitle}
         onChange={handleSearchChange}
-        onClear={() => {
-          handleSearchChange('');
-          setPage(1);
-        }}
+        onClear={() => handleSearchChange('')}
       />
       <div className={styles.filmsContainer}>
         {data?.search_result.map((film) => (
@@ -67,7 +86,7 @@ function Films({ filters }: FilmsProps) {
         <Pagination
           currentPage={page}
           totalPages={data?.total_pages || 1}
-          onPageChange={setPage}
+          onPageChange={handlePageChange}
         />
       ) : null}
     </>
