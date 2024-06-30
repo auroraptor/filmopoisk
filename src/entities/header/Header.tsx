@@ -33,7 +33,6 @@ function Header() {
   const handleLogin = async (username: string, password: string) => {
     try {
       const response = await fetchToken({ username, password }).unwrap();
-      console.log("Token:", response.token);
       localStorage.setItem("token", response.token);
       setButtonText("Выйти");
       setIsLoggedIn(true);
@@ -44,7 +43,7 @@ function Header() {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    localStorage.clear();
     setButtonText("Войти");
     setIsLoggedIn(false);
   };

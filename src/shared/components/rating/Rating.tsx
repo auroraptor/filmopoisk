@@ -2,6 +2,7 @@ import classNames from "classnames";
 import { useEffect, useState, Fragment } from "react";
 import styles from "./Rating.module.css";
 import { starTitles } from "../../constants/starTitles";
+import { useRateMovieMutation } from "../../../store/services/films";
 
 type RatingProps = {
   id: string | number;
@@ -9,18 +10,29 @@ type RatingProps = {
 };
 
 function Rating({ id, className }: RatingProps) {
-  const [rating, setRating] = useState<number | null>(null);
+  const [selectedRating, setSelectedRating] = useState<number | null>(null);
+  const [rateMovie] = useRateMovieMutation();
 
   useEffect(() => {
     const savedRating = localStorage.getItem(`rating-${id}`);
     if (savedRating) {
-      setRating(parseInt(savedRating, 10));
+      setSelectedRating(parseInt(savedRating, 10));
     }
   }, [id]);
 
-  const handleRatingChange = (newRating: number) => {
-    setRating(newRating);
-    localStorage.setItem(`rating-${id}`, newRating.toString());
+  const handleRatingChange = (value: number) => {
+    setSelectedRating(value);
+    localStorage.setItem(`rating-${id}`, value.toString());
+    rateMovie({ movieId: String(id), user_rate: value })
+      .unwrap()
+      .then((response) => {
+        // Обработка успешного ответа
+        console.log('Rating updated successfully:', response);
+      })
+      .catch((error) => {
+        // Обработка ошибок
+        console.error('Failed to update rating:', error);
+      });
   };
 
   return (
@@ -32,7 +44,7 @@ function Rating({ id, className }: RatingProps) {
             id={`star${star.value}-${id}`}
             name={`rating-${id}`}
             value={star.value}
-            checked={rating === star.value}
+            checked={selectedRating === star.value}
             onChange={() => handleRatingChange(star.value)}
           />
           <label

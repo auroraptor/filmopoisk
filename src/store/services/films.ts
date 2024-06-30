@@ -2,9 +2,18 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { ShortMovieInfo } from '../../shared/types';
 import { API_URL } from '../../shared/constants/api';
 
-export interface FetchFilmsResponse { // Экспортируем интерфейс
+export interface FetchFilmsResponse {
   search_result: ShortMovieInfo[];
   total_pages: number;
+}
+
+interface RateMovieRequest {
+  movieId: string;
+  user_rate: number;
+}
+
+interface RateMovieResponse {
+  token: string;
 }
 
 export const filmsApi = createApi({
@@ -17,8 +26,17 @@ export const filmsApi = createApi({
         params,
       }),
     }),
+    rateMovie: builder.mutation<RateMovieResponse, RateMovieRequest>({
+      query: (body) => ({
+        url: 'rateMovie',
+        method: 'POST',
+        body,
+      }),
+    }),
   }),
 });
 
-export const { useFetchFilmsQuery } = filmsApi;
+export const { useFetchFilmsQuery, useRateMovieMutation } = filmsApi;
+
 export type UseFetchFilmsQuery = ReturnType<typeof useFetchFilmsQuery>;
+export type UseRateMovieMutation = ReturnType<typeof useRateMovieMutation>;
