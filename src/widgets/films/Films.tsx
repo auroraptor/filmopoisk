@@ -23,7 +23,6 @@ function Films({ filters }: FilmsProps) {
       params.title = searchTitle;
     }
     if (filters.genre) {
-      console.log('filters.genre', filters.genre)
       const genreInEnglish = Object.keys(GENRES_MAP).find(
         key => GENRES_MAP[key as keyof typeof GENRES_MAP] === filters.genre.trim().toLowerCase()
       ) as string;
