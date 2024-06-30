@@ -4,8 +4,13 @@ import Film from "../../features/film/Film";
 import Pagination from "../../features/pagination/Pagination";
 import SearchInput from "../../features/searchInput/SearchInput";
 import styles from "./Films.module.css";
+import { GENRES_MAP } from "../../shared/types";
 
-function Films() {
+type FilmsProps = {
+  filters: { genre: string; year: string };
+};
+
+function Films({ filters }: FilmsProps) {
   const [page, setPage] = useState(1);
   const [searchTitle, setSearchTitle] = useState("");
   const [searchParams, setSearchParams] = useState<Record<string, string>>({});
@@ -17,12 +22,24 @@ function Films() {
     if (searchTitle) {
       params.title = searchTitle;
     }
+    if (filters.genre) {
+      console.log('filters.genre', filters.genre)
+      const genreInEnglish = Object.keys(GENRES_MAP).find(
+        key => GENRES_MAP[key as keyof typeof GENRES_MAP] === filters.genre.trim().toLowerCase()
+      ) as string;
+      if (genreInEnglish) {
+        params.genre = genreInEnglish;
+      }
+    }
+    if (filters.year) {
+      params.release_year = filters.year;
+    }
     setSearchParams(params);
-  }, [page, searchTitle]);
+  }, [page, searchTitle, filters]);
 
   useEffect(() => {
     setPage(1);
-  }, [searchTitle]);
+  }, [searchTitle, filters]);
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error loading films</div>;
