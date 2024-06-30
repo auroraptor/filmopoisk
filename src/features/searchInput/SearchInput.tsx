@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import debounce from 'lodash.debounce';
 import styles from './SearchInput.module.css';
 
@@ -12,8 +12,8 @@ type SearchInputProps = {
 function SearchInput({ placeholder = 'Название фильма', value, onChange, onClear }: SearchInputProps) {
   const [inputValue, setInputValue] = useState(value || '');
 
-  const debouncedOnChange = useCallback(
-    debounce((value: string) => onChange(value), 400),
+  const debouncedOnChange = useMemo(
+    () => debounce((value: string) => onChange(value), 300),
     [onChange]
   );
 
