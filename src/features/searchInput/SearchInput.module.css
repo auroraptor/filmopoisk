@@ -5,11 +5,20 @@
   width: 400px;
 }
 
+.icon {
+  background-image: url('../../shared/assets/icons/left-pointing-magnifying-glass.svg');
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 25%;
+  left: 8px;
+}
+
 .searchInput {
   width: 100%;
-  padding: 10px 40px 10px 16px;
+  padding: 10px 40px 10px 32px;
   border: 1px solid var(--color-border-gray);
-  border-radius: var(--border-radius-size-m);
+  border-radius: 8px;
   font-size: 16px;
   outline: none;
 }

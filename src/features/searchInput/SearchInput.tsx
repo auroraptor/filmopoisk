@@ -7,9 +7,10 @@ type SearchInputProps = {
   onClear?: () => void;
 };
 
-function SearchInput({ placeholder = 'Search...', value, onChange, onClear }: SearchInputProps) {
+function SearchInput({ placeholder = 'Название фильма', value, onChange, onClear }: SearchInputProps) {
   return (
     <div className={styles.searchInputContainer}>
+      <div className={styles.icon}></div>
       <input
         type="text"
         className={styles.searchInput}
