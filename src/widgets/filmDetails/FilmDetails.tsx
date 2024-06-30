@@ -1,5 +1,5 @@
 import { FullMovieInfo } from "../../shared/types";
-import Rating from "../../features/rating/Rating";
+import Rating from "../../shared/components/rating/Rating";
 import styles from "./FilmDetails.module.css";
 
 interface FilmDetailsProps {

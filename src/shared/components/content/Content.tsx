@@ -6,7 +6,7 @@ type ContentProps = {
 };
 
 function Content({ children }: ContentProps) {
-  return <section className={styles.content}>{children}</section>;
+  return <article className={styles.content}>{children}</article>;
 }
 
 export default Content;
