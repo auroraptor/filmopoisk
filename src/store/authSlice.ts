@@ -5,7 +5,7 @@ interface AuthState {
 }
 
 const initialState: AuthState = {
-  isAuth: !!localStorage.getItem('token'),
+  isAuth: typeof window !== 'undefined' && !!localStorage.getItem('token'),
 };
 
 const authSlice = createSlice({
@@ -14,9 +14,15 @@ const authSlice = createSlice({
   reducers: {
     login(state) {
       state.isAuth = true;
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('token', 'your-token'); // сохраните токен при входе
+      }
     },
     logout(state) {
       state.isAuth = false;
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('token'); // удалите токен при выходе
+      }
     },
   },
 });

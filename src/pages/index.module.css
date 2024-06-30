@@ -1,0 +1,16 @@
+.main {
+    background-color: var(--color-page-background);
+    padding: var(--page-padding); 
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    min-height: 100vh;
+}
+
+.flex {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}

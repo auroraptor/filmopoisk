@@ -1,0 +1,32 @@
+:root {
+  --color-header-background: #333333;
+  --color-page-background: rgba(237, 237, 237, 1);
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-orange: #e94e00;
+  --color-gray: rgba(171, 171, 171, 1);
+  --color-button-border: var(--color-orange);
+  --color-button-signin-background: var(--color-orange);
+  --color-button-signin-text: var(--color-white);
+  --color-button-signout-background: transparent;
+  --color-button-signout-text: var(--color-orange);
+  --color-button-disabled: rgba(233, 234, 237, 1);
+  --color-text-gray: rgba(153, 159, 166, 1);
+  --color-border-gray: rgba(225, 227, 230, 1);
+  --color-select-border-focused: var(--color-orange);
+  --color-select-item-hover: rgba(225, 227, 230, 0.8);
+  --color-film-label: var(--color-gray);
+  --font-primary: "Roboto", sans-serif;
+  --page-padding: 108px 32px 88px;
+  --border-radius-size-m: 8px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-primary);
+}

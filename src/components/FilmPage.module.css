@@ -1,0 +1,9 @@
+.filmPage {
+    padding: var(--page-padding); 
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: start;
+    justify-content: start;
+    background-color: var(--color-page-background);
+}
