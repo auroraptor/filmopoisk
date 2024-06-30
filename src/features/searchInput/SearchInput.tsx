@@ -28,6 +28,13 @@ function SearchInput({ placeholder = 'Название фильма', value, onC
     setInputValue(e.target.value);
   };
 
+  const handleClear = () => {
+    setInputValue('');
+    if (onClear) {
+      onClear();
+    }
+  };
+
   return (
     <div className={styles.searchInputContainer}>
       <div className={styles.icon}></div>
@@ -39,7 +46,7 @@ function SearchInput({ placeholder = 'Название фильма', value, onC
         onChange={handleChange}
       />
       {inputValue && (
-        <button className={styles.clearButton} onClick={onClear}>
+        <button className={styles.clearButton} onClick={handleClear}>
           ✕
         </button>
       )}

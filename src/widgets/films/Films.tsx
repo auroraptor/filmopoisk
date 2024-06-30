@@ -37,7 +37,10 @@ function Films() {
         placeholder="Название фильма"
         value={searchTitle}
         onChange={handleSearchChange}
-        onClear={() => setSearchTitle("")}
+        onClear={() => {
+          handleSearchChange('');
+          setPage(1);
+        }}
       />
       <div className={styles.filmsContainer}>
         {data?.search_result.map((film) => (
