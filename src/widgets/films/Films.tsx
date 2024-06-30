@@ -41,7 +41,7 @@ function Films({ filters }: FilmsProps) {
 
   useEffect(() => {
     setPage(1);
-  }, [searchTitle, filters]);
+  }, [searchTitle]);
 
   const handleSearchChange = (value: string) => {
     setSearchTitle(value);
